@@ -3,9 +3,15 @@
     import {onDestroy} from "svelte";
     import {Progress} from "$lib/components/ui/progress";
     import { CloudSun } from "@lucide/svelte"
+    import Spotify from "$lib/components/widgets/spotify.svelte"
 
     let now = $state(new Date());
     let timestring = $derived(now.toLocaleTimeString())
+    let datestring = $derived(now.toLocaleDateString('en-US', {
+        weekday: 'long',
+        month: 'long',
+        day: 'numeric'
+    }))
     const interval = setInterval(() => {
         now = new Date();
     }, 1000);
@@ -23,39 +29,10 @@
                 {timestring}
             </Item.Content>
             <Item.Footer class="text-gray-200 ">
-                Sunday, July 20
+                {datestring}
             </Item.Footer>
         </Item.Root>
-        <Item.Root class="p-7 overflow-hidden row-span-2" variant="muted">
-            <Item.Content class="flex h-full w-full min-h-0 flex-col gap-5">
-                <div class="flex min-h-0 min-w-0 flex-1 gap-5">
-                    <div class="h-full aspect-square shrink-0 overflow-hidden rounded-xl">
-                        <img
-                                src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a8/2e/b4/a82eb490-f30a-a321-461a-0383c88fec95/15UMGIM23316.rgb.jpg/600x600bb.jpg"
-                                alt="Album cover"
-                                class="block size-full object-cover"
-                        />
-                    </div>
-                    <div class="min-w-0">
-                        <div class="space-y-0 mb-2">
-                            <h2 class="font-bold mt-3 text-2xl">The Less I Know The Better</h2>
-                            <h3 class="text-gray-400 text-md">Tame Impala</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col gap-5">
-                    <Progress value={50} class="*:bg-white"/>
-                    <div class="flex justify-between items-center w-full gap-4">
-                        <div class="text-gray-400 text-center">
-                            3:42
-                        </div>
-                        <div class="text-gray-400 text-center">
-                            -0:07
-                        </div>
-                    </div>
-                </div>
-            </Item.Content>
-        </Item.Root>
+        <Spotify />
         <div class="grid grid-cols-2 grid-rows-1 gap-5">
             <Item.Root variant="muted">
                 <div class="flex h-full">
