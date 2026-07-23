@@ -4,6 +4,7 @@
     import {Progress} from "$lib/components/ui/progress";
     import { CloudSun } from "@lucide/svelte"
     import Spotify from "$lib/components/widgets/spotify.svelte"
+    import Weather from "$lib/components/widgets/weather.svelte"
 
     let now = $state(new Date());
     let timestring = $derived(now.toLocaleTimeString())
@@ -34,23 +35,7 @@
         </Item.Root>
         <Spotify />
         <div class="grid grid-cols-2 grid-rows-1 gap-5">
-            <Item.Root variant="muted">
-                <div class="flex h-full">
-                    <div class="flex flex-col justify-between">
-                        <div class="flex flex-col gap-1">
-                            <span class="text-md">Prairie Village</span>
-                            <div class="flex flex-row flex-1 gap-2 h-full">
-                                <CloudSun class="size-9" />
-                                <div class="flex flex-col gap-0 h-full justify-between">
-                                    <h3 class="text-md font-bold">95°</h3>
-                                    <span>few clouds</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-xs">no precipitation within the next hour</div>
-                    </div>
-                </div>
-            </Item.Root>
+            <Weather />
             <Item.Root variant="muted" class="h-full min-w-0 overflow-hidden gap-1">
                 <div class="flex h-full min-w-0 flex-col justify-between">
                     <div class="min-w-0 border-l-2 border-l-red-400 pl-2">

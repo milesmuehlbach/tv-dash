@@ -1,3 +1,5 @@
+import type {Component} from "svelte";
+
 export interface SpotifyImage {
     url: string;
 }
@@ -38,6 +40,15 @@ export interface SpotifyPlaybackResponse {
     progress_ms: number | null;
     is_playing: boolean;
     item: SpotifyTrack | SpotifyEpisode | null;
+}
+
+export interface WeatherForecast {
+    temperature: number | null;
+    status_string: string | null;
+    status_icon: Component | null;
+    precipitation_chance: number | null;
+    wind_speed: number | null;
+    city: string | null;
 }
 
 export type SpotifyPlayback =
